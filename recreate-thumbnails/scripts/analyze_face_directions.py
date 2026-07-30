@@ -7,11 +7,11 @@ This script:
 2. Analyzes face pose (yaw/pitch) using MediaPipe
 3. Renames and moves to .tmp/reference_photos/ with direction in filename
 
-Naming convention: nick_yaw{L/R}{degrees}_pitch{U/D}{degrees}.jpg
+Naming convention: face_yaw{L/R}{degrees}_pitch{U/D}{degrees}.jpg
 Examples:
-  - nick_yawL30_pitchU10.jpg  (looking 30° left, 10° up)
-  - nick_yawR45_pitch0.jpg    (looking 45° right, level)
-  - nick_yaw0_pitch0.jpg      (dead center)
+  - face_yawL30_pitchU10.jpg  (looking 30° left, 10° up)
+  - face_yawR45_pitch0.jpg    (looking 45° right, level)
+  - face_yaw0_pitch0.jpg      (dead center)
 
 Usage:
     python analyze_face_directions.py              # Process all in raw/
@@ -146,7 +146,7 @@ def generate_filename(yaw: float, pitch: float, index: int = 0) -> str:
     yaw_str = format_angle(yaw, "R", "L")
     pitch_str = format_angle(pitch, "U", "D")
 
-    base = f"nick_yaw{yaw_str}_pitch{pitch_str}"
+    base = f"face_yaw{yaw_str}_pitch{pitch_str}"
     if index > 0:
         base += f"_{index}"
     return base + ".jpg"
@@ -240,14 +240,14 @@ def find_closest_reference(target_yaw: float, target_pitch: float) -> Path | Non
     extensions = {".jpg", ".jpeg", ".png", ".webp"}
     refs = [
         f for f in OUTPUT_DIR.iterdir()
-        if f.suffix.lower() in extensions and f.name.startswith("nick_")
+        if f.suffix.lower() in extensions and f.name.startswith("face_")
     ]
 
     if not refs:
         return None
 
     # Parse yaw/pitch from filename
-    pattern = r"nick_yaw(L|R)?(\d+|0)_pitch(U|D)?(\d+|0)"
+    pattern = r"face_yaw(L|R)?(\d+|0)_pitch(U|D)?(\d+|0)"
 
     best_match = None
     best_distance = float("inf")

@@ -40,8 +40,8 @@ python3 ./scripts/analyze_face_directions.py
 ```
 
 Creates files like:
-- `nick_yawL30_pitchU10.jpg` — looking 30° left, 10° up
-- `nick_yawR45_pitch0.jpg` — looking 45° right, level
+- `face_yawL30_pitchU10.jpg` — looking 30° left, 10° up
+- `face_yawR45_pitch0.jpg` — looking 45° right, level
 
 ### Step 2: Generate Thumbnails
 

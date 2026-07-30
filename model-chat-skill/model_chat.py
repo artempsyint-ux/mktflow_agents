@@ -344,7 +344,7 @@ async def run_debate(
     print("\n")
 
     # ── Save outputs ────────────────────────────────────────────────────
-    base_dir = Path("/Users/nicksaraev/Business/active/model-chat")
+    base_dir = Path("~/model-chat").expanduser()
     run_ts = datetime.now().strftime("%Y%m%d-%H%M%S")
     output_dir = base_dir / run_ts
     output_dir.mkdir(parents=True, exist_ok=True)

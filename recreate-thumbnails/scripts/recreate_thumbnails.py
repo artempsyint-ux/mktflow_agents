@@ -142,19 +142,19 @@ def find_best_reference(target_yaw: float, target_pitch: float) -> Path | None:
     """
     Find the reference photo with the closest matching face pose.
 
-    Looks for files named like: nick_yawL30_pitchU10.jpg
+    Looks for files named like: face_yawL30_pitchU10.jpg
     """
     extensions = {".jpg", ".jpeg", ".png", ".webp"}
     refs = [
         f for f in REFERENCE_PHOTOS_DIR.iterdir()
-        if f.suffix.lower() in extensions and f.name.startswith("nick_yaw")
+        if f.suffix.lower() in extensions and f.name.startswith("face_yaw")
     ]
 
     if not refs:
         return None
 
     # Parse yaw/pitch from filename
-    pattern = r"nick_yaw(L|R)?(\d+|0)_pitch(U|D)?(\d+|0)"
+    pattern = r"face_yaw(L|R)?(\d+|0)_pitch(U|D)?(\d+|0)"
 
     best_match = None
     best_distance = float("inf")

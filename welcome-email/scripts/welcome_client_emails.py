@@ -99,8 +99,8 @@ def run(payload: dict, token_data: dict, slack_notify=None) -> dict:
     # =========================================================================
     notify("📤 Sending email 1/3 (YOUR_NAME)...")
 
-    nick_subject = f"Welcome to YourCompany, {client_first_name}!"
-    nick_body = f"""Hey {client_first_name},
+    welcome_subject = f"Welcome to YourCompany, {client_first_name}!"
+    welcome_body = f"""Hey {client_first_name},
 
 Just saw the agreement go through and had to rush over and formally welcome you.
 
@@ -119,7 +119,7 @@ Thanks,
 YOUR_NAME"""
 
     try:
-        result1 = send_email("YOUR_NAME", client_email, nick_subject, nick_body, token_data)
+        result1 = send_email("YOUR_NAME", client_email, welcome_subject, welcome_body, token_data)
         emails_sent.append(result1)
         notify("✅ Email 1/3 sent (YOUR_NAME)")
     except Exception as e:

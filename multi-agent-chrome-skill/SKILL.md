@@ -41,7 +41,7 @@ Look at the task. If there are 10 contact forms to fill, 3-5 agents is good. If 
 ### 2. Launch Chrome instances
 
 ```bash
-bash /Users/nicksaraev/Business/active/multi-chrome-agent/launch_chrome.sh [COUNT]
+bash ~/multi-chrome-agent/launch_chrome.sh [COUNT]
 ```
 
 This spawns `COUNT` Chrome instances on ports 9223+. Wait for the "READY" confirmation for each.
@@ -57,7 +57,7 @@ Clear the chat file and write task assignments:
 [2026-03-05 14:30] Launching 3 agents for contact form submission.
 
 ### Agent 1 Tasks
-1. Go to https://example1.com/contact -> fill name: "Nick Saraev", email: "nick@nicksaraev.com", message: "Hi, I'm interested in..."
+1. Go to https://example1.com/contact -> fill name: "YOUR_NAME", email: "team@mktflow.ru", message: "Hi, I'm interested in..."
 2. Go to https://example2.com/contact -> same form fill
 
 ### Agent 2 Tasks
@@ -80,7 +80,7 @@ Clear the chat file and write task assignments:
 For each agent, open a new terminal and run:
 
 ```bash
-cd /Users/nicksaraev/Business/active/multi-chrome-agent/chrome-agent-N && claude
+cd ~/multi-chrome-agent/chrome-agent-N && claude
 ```
 
 Where N is 1-5. Each agent will:
@@ -93,7 +93,7 @@ Where N is 1-5. Each agent will:
 
 ```bash
 for i in 1 2 3 4 5; do
-    osascript -e "tell application \"Terminal\" to do script \"cd /Users/nicksaraev/Business/active/multi-chrome-agent/chrome-agent-$i && env -u CLAUDECODE -u CLAUDE_CODE_ENTRYPOINT -u CLAUDE_AGENT_SDK_VERSION -u CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING -u CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS claude --dangerously-skip-permissions -p 'You are Agent $i. Read /Users/nicksaraev/Business/active/multi-chrome-agent/chat.md, find your tasks under Agent $i, and execute them. Use Chrome DevTools MCP to browse websites, search listings, and collect data. Write your findings as a markdown table back to chat.md under the Agent $i section. Mark yourself as [WORKING] while active and [DONE] when finished.'\""
+    osascript -e "tell application \"Terminal\" to do script \"cd ~/multi-chrome-agent/chrome-agent-$i && env -u CLAUDECODE -u CLAUDE_CODE_ENTRYPOINT -u CLAUDE_AGENT_SDK_VERSION -u CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING -u CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS claude --dangerously-skip-permissions -p 'You are Agent $i. Read ~/multi-chrome-agent/chat.md, find your tasks under Agent $i, and execute them. Use Chrome DevTools MCP to browse websites, search listings, and collect data. Write your findings as a markdown table back to chat.md under the Agent $i section. Mark yourself as [WORKING] while active and [DONE] when finished.'\""
     sleep 2
 done
 ```
@@ -113,7 +113,7 @@ Tab 2: cd ~/Business/active/multi-chrome-agent/chrome-agent-2 && claude
 Read the chat file periodically to check agent status:
 
 ```bash
-cat /Users/nicksaraev/Business/active/multi-chrome-agent/chat.md
+cat ~/multi-chrome-agent/chat.md
 ```
 
 Look for `[DONE]`, `[ERROR]`, or `[WORKING]` tags from each agent.
@@ -123,7 +123,7 @@ Look for `[DONE]`, `[ERROR]`, or `[WORKING]` tags from each agent.
 When all agents report `[DONE]`:
 
 ```bash
-bash /Users/nicksaraev/Business/active/multi-chrome-agent/kill_chrome.sh
+bash ~/multi-chrome-agent/kill_chrome.sh
 ```
 
 ## Chat Protocol
